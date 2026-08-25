@@ -71,3 +71,16 @@ export default defineConfig([
     },
 ])
 ```
+
+## Project structure (`/frontend/src`)
+
+- `components/` — Reusable UI components (e.g. `MovieCard`, `LoadingSpinner`).
+- `pages/` — Page-level components, one per application route (e.g. `Explore`, `MovieDetailPage`).
+- `services/` — Functions that consume external APIs (TMDB) or the custom backend; contain side effects (network requests).
+- `context/` — React contexts and their providers (e.g. `AuthContext`).
+- `hooks/` — Custom hooks encapsulating state and lifecycle logic (e.g. `useMovieList`, `useAuth`).
+- `routes/` — React Router route configuration (e.g. `AppRoutes.tsx`).
+- `assets/` — Images, icons and other static assets.
+- `styles/` — Global styles and design tokens (colors, typography, spacing).
+- `utils/` — Pure, reusable functions with no side effects (e.g. `getPosterUrl`, `getDirector`).
+- `types/` — Shared TypeScript type and interface definitions used across the application.
