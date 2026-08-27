@@ -1,6 +1,11 @@
-import './App.css'
+import styles from './App.module.css'
 import { AppRoutes } from './routes/AppRoutes'
 
 export const App = () => {
-    return <AppRoutes />
+
+    return (
+        <div className={styles.container}>
+            <AppRoutes />
+        </div> 
+    )
 }
