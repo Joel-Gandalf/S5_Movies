@@ -53,7 +53,7 @@ This is an academic project developed as part of a full-stack bootcamp, followin
 Clone the repository and install the frontend dependencies:
 
 ```bash
-git clone https://github.com/<your-username>/movies-tmdb.git
+git clone https://github.com/Joel-Gandalf/S5_Movies.git.git
 cd movies-tmdb/frontend
 npm install
 ```
@@ -69,7 +69,7 @@ cp .env.example .env
 Fill in the following variables:
 
 | Variable | Description |
-|---|---|
+| --- | --- |
 | `VITE_TMDB_API_KEY` | TMDB API Read Access Token (v4 Bearer Token) |
 | `VITE_FIREBASE_API_KEY` | Firebase Web SDK API key |
 | `VITE_FIREBASE_AUTH_DOMAIN` | Firebase Auth domain |
@@ -91,7 +91,7 @@ The app will be available at `http://localhost:5173` by default.
 ### Available scripts
 
 | Script | Description |
-|---|---|
+| --- | --- |
 | `npm run dev` | Starts the development server |
 | `npm run build` | Type-checks and builds the app for production |
 | `npm run preview` | Previews the production build locally |
