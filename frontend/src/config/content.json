@@ -1,0 +1,31 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "genericError": "Ha ocurrido un error. Inténtalo de nuevo.",
+    "noResults": "No se han encontrado resultados.",
+    "viewAll": "Ver todos",
+    "save": "Guardar",
+    "cancel": "Cancelar"
+  },
+  "explore": {
+    "noMoviesFound": "No se han encontrado películas."
+  },
+  "search": {
+    "sectionTitles": {
+      "movies": "Título",
+      "people": "Personas",
+      "cast": "Reparto"
+    },
+    "noResults": "No se han encontrado resultados para tu búsqueda."
+  },
+  "account": {
+    "noRatingsYet": "Todavía no has puntuado ninguna película."
+  },
+  "favorites": {
+    "noFavoritesYet": "Todavía no tienes películas favoritas."
+  },
+  "communityRating": {
+    "label": "Puntuación de la comunidad",
+    "noRatingsYet": "Sin puntuaciones todavía"
+  }
+}
