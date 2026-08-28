@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router'
 
+
 const Home = () => <p>Home — pendiente (US-02)</p>
 const Explore = () => <p>Explore — pendiente (US-03)</p>
 const MovieDetailPage = () => <p>MovieDetailPage — pendiente (US-06)</p>
@@ -14,15 +15,17 @@ export const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/explore" element={<Explore />} />
-        <Route path="/movies/:id" element={<MovieDetailPage />} />
-        <Route path="/people/:id" element={<PersonDetailPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/account" element={<AccountPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
-        <Route path="*" element={<NotFound />} />
+        
+          <Route path="/" element={<Home />} />
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/movies/:id" element={<MovieDetailPage />} />
+          <Route path="/people/:id" element={<PersonDetailPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/account" element={<AccountPage />} />
+          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route path="*" element={<NotFound />} />
+       
       </Routes>
     </BrowserRouter>
   )
