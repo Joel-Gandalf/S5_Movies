@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router'
-
+import { Layout } from '../components/Layout'
 
 const Home = () => <p>Home — pendiente (US-02)</p>
 const Explore = () => <p>Explore — pendiente (US-03)</p>
@@ -15,7 +15,7 @@ export const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        
+        <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/movies/:id" element={<MovieDetailPage />} />
@@ -25,7 +25,7 @@ export const AppRoutes = () => {
           <Route path="/account" element={<AccountPage />} />
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="*" element={<NotFound />} />
-       
+        </Route>
       </Routes>
     </BrowserRouter>
   )
