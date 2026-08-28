@@ -1,0 +1,1 @@
+export const RegisterPage = () => <p>RegisterPage — pendiente (US-09)</p>
