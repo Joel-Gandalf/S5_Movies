@@ -7,6 +7,7 @@ import { RegisterPage } from '../pages/RegisterPage'
 import { AccountPage } from '../pages/AccountPage'
 import { FavoritesPage } from '../pages/FavoritesPage'
 import { NotFound } from '../pages/NotFound'
+import { PrivateRouteGuard } from './PrivateRouteGuard'
 
 const MovieDetailPage = () => <p>MovieDetailPage — pendiente (US-06)</p>
 const PersonDetailPage = () => <p>PersonDetailPage — pendiente (US-07/US-08)</p>
@@ -22,8 +23,8 @@ export const AppRoutes = () => {
           <Route path="/people/:id" element={<PersonDetailPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/account" element={<AccountPage />} />
-          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route path="/account" element={<PrivateRouteGuard> <AccountPage /> </PrivateRouteGuard>} />
+          <Route path="/favorites" element={<PrivateRouteGuard> <FavoritesPage /> </PrivateRouteGuard>} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
