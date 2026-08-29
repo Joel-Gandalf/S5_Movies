@@ -1,0 +1,24 @@
+.list {
+    display: flex;
+    gap: var(--spacing-md);
+    list-style: none;
+}
+
+.link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: var(--font-size-base);
+}
+
+.link:hover {
+    color: var(--color-text);
+}
+
+.accountLink {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: var(--font-weight-bold);
+}
