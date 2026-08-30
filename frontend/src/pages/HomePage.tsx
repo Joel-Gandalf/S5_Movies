@@ -1,3 +1,5 @@
+import headingImage from '../assets/images/imagen-muestra.png';
+
 export const HomePage = () => {
   
     return (
@@ -16,6 +18,9 @@ export const HomePage = () => {
                 <p>
                     Busca por título, actor o director, filtra por género o puntuación... Encuentra siempre algo nuevo que ver.
                 </p>
+                <figure>
+                    <img src={headingImage} alt="Vista previa de la aplicación PROVISIONAL" />
+                </figure>
             </section>
 
             <section aria-labelledby="people-heading">
@@ -25,6 +30,9 @@ export const HomePage = () => {
                 <p>
                     Descubre la trayectoria de tus actores y directores favoritos, y explora toda su filmografía.
                 </p>
+                <figure>
+                    <img src={headingImage} alt="Vista previa de la aplicación PROVISIONAL" />
+                </figure>
             </section>
 
             <section aria-labelledby="favorites-heading">
@@ -34,6 +42,9 @@ export const HomePage = () => {
                 <p>
                     Marca tus películas preferidas y tenlas siempre a mano, en un único listado personal.
                 </p>
+                <figure>
+                    <img src={headingImage} alt="Vista previa de la aplicación PROVISIONAL" />
+                </figure>
             </section>
 
             <section aria-labelledby="rating-heading">
@@ -43,6 +54,9 @@ export const HomePage = () => {
                 <p>
                     Construye tu propio criterio y compártelo con la comunidad.
                 </p>
+                <figure>
+                    <img src={headingImage} alt="Vista previa de la aplicación PROVISIONAL" />
+                </figure>
             </section>
         </>
     );
