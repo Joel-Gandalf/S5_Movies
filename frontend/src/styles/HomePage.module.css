@@ -51,22 +51,22 @@
     color: var(--color-text-muted);
     line-height: 1.5;
 }
-
+/* MIRAR AL PONER SCREENSHOTS REALES COMO QUEDA ASPECT-RATIO Y HEIGHT 100% EN VEZ DE AUTO */
 .figure {
     margin: 0;
     border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: var(--shadow);
+    aspect-ratio: 4 / 3;
 }
 
 .figure img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
 }
 
-/* A partir de tablet: contenido y figura en fila, alternando lado */
 @media (min-width: 768px) {
     .section {
         flex-direction: row;
