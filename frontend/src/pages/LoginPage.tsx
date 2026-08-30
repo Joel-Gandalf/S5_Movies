@@ -1,0 +1,1 @@
+export const LoginPage = () => <p>LoginPage — pendiente (US-10)</p>

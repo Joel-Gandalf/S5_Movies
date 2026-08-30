@@ -1,0 +1,1 @@
+export const HomePage = () => <p>Home — pendiente (US-02)</p>

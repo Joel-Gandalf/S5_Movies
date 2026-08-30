@@ -1,0 +1,32 @@
+.list {
+    display: flex;
+    gap: var(--spacing-md);
+    list-style: none;
+}
+
+.link {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 6px;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.link:hover {
+    color: var(--color-text);
+    background-color: var(--color-border);
+}
+
+.link[aria-current='page'] {
+    color: var(--color-primary-hover);
+}
+
+.accountLink {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: var(--font-weight-bold);
+}
