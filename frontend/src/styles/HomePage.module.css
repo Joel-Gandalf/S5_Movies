@@ -1,0 +1,89 @@
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+    max-width: var(--content-max-width);
+    padding-block: var(--spacing-xl);
+    padding-inline: var(--content-padding-inline);
+    margin-inline: auto;
+    text-align: center;
+}
+
+.title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    line-height: 1.2;
+}
+
+.intro {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    max-width: 40ch;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    max-width: var(--content-max-width);
+    padding-block: var(--spacing-xl);
+    padding-inline: var(--content-padding-inline);
+    margin-inline: auto;
+    border-top: 1px solid var(--color-border);
+}
+
+.sectionContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.sectionHeading {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+}
+
+.sectionDescription {
+    font-size: var(--font-size-base);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+/* MIRAR AL PONER SCREENSHOTS REALES COMO QUEDA ASPECT-RATIO Y HEIGHT 100% EN VEZ DE AUTO */
+.figure {
+    margin: 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    aspect-ratio: 4 / 3;
+}
+
+.figure img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .section {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .sectionContent,
+    .figure {
+        flex: 1 1 50%;
+        min-width: 0;
+    }
+
+    .section:nth-of-type(even) {
+        flex-direction: row-reverse;
+    }
+
+    .section:nth-of-type(odd) .sectionContent {
+        text-align: right;
+    }    
+}
