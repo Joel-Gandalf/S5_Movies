@@ -1,4 +1,4 @@
-import content from "../config/content.json"
+import content from "../config/content.json";
 
 export const LoadingSpinner = () => {
 
