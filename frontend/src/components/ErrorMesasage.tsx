@@ -8,7 +8,7 @@ export const ErrorMessage = ({message}: ErrorMessageProps) => {
 
     return (
         <div role="alert">
-            {message ? message : content.common.genericError}
+            <p>{message ? message : content.common.genericError}</p>
         </div>
     );
 }
