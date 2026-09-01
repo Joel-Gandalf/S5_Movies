@@ -1,1 +1,5 @@
-export const ExplorePage = () => <p>Explore — pendiente (US-03)</p>
+export const ExplorePage = () => {
+    return (
+        <></>
+    );
+}
