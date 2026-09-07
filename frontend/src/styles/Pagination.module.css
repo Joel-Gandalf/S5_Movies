@@ -1,0 +1,52 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin: var(--spacing-xl) auto;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background-color: var(--color-primary-hover);
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    padding-bottom: 0.15em;
+    cursor: pointer;
+    box-shadow:
+    0 4px 6px -1px rgba(252, 249, 249, 0.264),
+    0 2px 4px -1px rgba(254, 254, 253, 0.159),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.button:hover:not(:disabled) {
+    background-color: var(--color-primary);
+    transform: scale(1.05);
+    box-shadow:
+    0 5px 8px -1px rgba(255, 255, 255, 0.5),
+    0 3px 6px -1px rgba(255, 255, 255, 0.308),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.pageIndicator {
+    min-width: 2rem;
+    text-align: center;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+}
