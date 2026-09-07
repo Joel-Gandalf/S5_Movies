@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-lg);
+  margin: var(--spacing-lg) auto;
+  max-width: 32rem;
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-error);
+  border-radius: 0.5rem;
+  color: var(--color-text);
+}
