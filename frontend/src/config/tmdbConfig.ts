@@ -8,6 +8,7 @@ export const DEFAULT_DISCOVER_PARAMS = {
   sort_by: 'primary_release_date.desc',
   region: 'ES',
   include_adult: false,
+  'vote_count.gte': 10,
 };
 // primary_release_date.lte=fecha_actual
 // Obtención de la fecha actual:

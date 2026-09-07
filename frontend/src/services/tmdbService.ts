@@ -7,6 +7,7 @@ export const discoverMovies = async (page: number = 1): Promise<PaginatedRespons
     const params = new URLSearchParams({
         ...DEFAULT_DISCOVER_PARAMS,
         include_adult: String(DEFAULT_DISCOVER_PARAMS.include_adult),
+        'vote_count.gte': String(DEFAULT_DISCOVER_PARAMS["vote_count.gte"]),
         'primary_release_date.lte': getTodayFormatted(),
         page: String(page),
     });
