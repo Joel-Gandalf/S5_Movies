@@ -1,0 +1,11 @@
+.page {
+  min-height: 8vh;
+}
+
+.title {
+  text-align: center;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin: var(--spacing-lg) auto var(--spacing-lg);
+}

@@ -12,7 +12,7 @@ export const Layout = () => {
     }
 
     return (
-        <>
+        <div className={styles.appShell}>
             <header className={styles.siteHeader}>
                 <div className={styles.headerInner}>
                     <Link to="/" className={styles.logoSlot}>
@@ -51,6 +51,6 @@ export const Layout = () => {
             <footer className={styles.siteFooter}>
                 <div className={styles.footerInner}></div>
             </footer>
-        </>
+        </div>
     );
 }
