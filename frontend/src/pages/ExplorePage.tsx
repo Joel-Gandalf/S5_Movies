@@ -1,3 +1,4 @@
+import styles from "../styles/ExplorePage.module.css";
 import { useMovieList } from "../hooks/useMovieList";
 import { MovieGrid } from "../components/MovieGrid";
 import { Pagination } from "../components/Pagination";
@@ -12,7 +13,9 @@ export const ExplorePage = () => {
 
     return (
         <>
-            <h1>Novedades para descubrir</h1>
+            <div className={styles.page}>
+                <h1 className={styles.title}>Novedades para descubrir</h1>
+            </div>
             {requestStatus === 'loading' && <LoadingSpinner />}
             {requestStatus === 'error' && <ErrorMessage />}
             {requestStatus === 'success' && (movies.length > 0 ? (
