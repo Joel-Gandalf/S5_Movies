@@ -11,6 +11,7 @@
     "noMoviesFound": "No se han encontrado películas."
   },
   "search": {
+    "placeholder": "Buscar películas, actores y directores...",
     "sectionTitles": {
       "movies": "Título",
       "people": "Personas",
