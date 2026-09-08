@@ -1,0 +1,3 @@
+export const SEARCH_DEBOUNCE_MS = 450; 
+export const SEARCH_MAX_RESULTS_PER_SECTION = 6;
+export const SEARCH_MAX_PEOPLE_FOR_CAST_CHAIN = 3;
