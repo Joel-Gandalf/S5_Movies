@@ -2,7 +2,7 @@ import type { Movie } from "../types/Movie";
 import { getPosterUrl } from "../utils/getPosterUrl";
 import starFilled from "../assets/icons/estrella-relleno.png";
 import { Link } from 'react-router';
-import styles from "../styles/MovieCard.module.css";
+import styles from "../styles/Card.module.css";
 
 export const MovieCard = ({ movie }: { movie: Movie }) => {
 
@@ -20,7 +20,7 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
                 </div>
                 <figcaption className={styles.caption}>
                     <h3 className={styles.title}>{movie.title}</h3>
-                    {(yearPublication !== "") && <p className={styles.year}>{`(${yearPublication})`}</p>}
+                    {(yearPublication !== "") && <p className={styles.meta}>{`(${yearPublication})`}</p>}
                 </figcaption>
             </figure>
         </Link>

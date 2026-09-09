@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { getPosterUrl } from "../utils/getPosterUrl";
 import { getProfileImageUrl } from "../utils/getProfileImageUrl";
 import { SEARCH_POSTER_SIZE, SEARCH_PROFILE_SIZE } from "../config/tmdbConfig";
+import { getPersonRoleLabel } from "../utils/getPersonRoleLabel";
 
 type SearchResultItemProps =
     | { type: "movie"; movie: Movie }
@@ -20,35 +21,26 @@ export const SearchResultItem = (props: SearchResultItemProps) => {
             <Link to={`/movies/${movie.id}`}>
                 <figure>
                     <img src={posterUrl} alt="Poster de la película" />
-                    <div>
+                    <figcaption>
                         <p>{movie.title}</p>
                         <p>{`(${yearPublication})`}</p>
-                    </div>
+                    </figcaption>
                 </figure>
             </Link>
         );
     }
     const { person } = props;
     const profileImageUrl = getProfileImageUrl(person.profile_path, SEARCH_PROFILE_SIZE);
-    const role = person.known_for_department;
-    let roleLabel: string;
-
-    if (role === "Acting") {
-        roleLabel = "Actor/Actriz";
-    } else if (role === "Directing") {
-        roleLabel = "Director/a";
-    } else {
-        roleLabel = "Profesional cinematográfico"
-    }
+    const roleLabel = getPersonRoleLabel(person.known_for_department);
 
     return (
         <Link to={`/people/${person.id}`}>
             <figure>
                 <img src={profileImageUrl} alt="Fotografía de" />
-                <div>
+                <figcaption>
                     <p>{person.name}</p>
                     <p>{roleLabel}</p>
-                </div>
+                </figcaption>
             </figure>
         </Link>
     );
