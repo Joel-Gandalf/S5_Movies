@@ -1,6 +1,6 @@
 import type { Movie } from "../types/Movie";
 import { MovieCard } from "./MovieCard";
-import styles from "../styles/MovieGrid.module.css";
+import styles from "../styles/Grid.module.css";
 
 interface MovieGridProps {
     movies: Movie[];
