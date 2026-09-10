@@ -7,10 +7,11 @@ export const PROFILE_SIZE = 'w185';
 export const SEARCH_POSTER_SIZE = 'w92';
 export const SEARCH_PROFILE_SIZE = 'w92';
 // query params
+export const DEFAULT_INCLUDE_ADULT = false;
 export const DEFAULT_DISCOVER_PARAMS = {
   sort_by: 'primary_release_date.desc',
   region: 'ES',
-  include_adult: false,
+  include_adult: DEFAULT_INCLUDE_ADULT,
   'vote_count.gte': 10,
 };
 // primary_release_date.lte=fecha_actual
