@@ -1,5 +1,5 @@
 import { TMDB_BASE_URL, DEFAULT_DISCOVER_PARAMS, getTodayFormatted, DEFAULT_INCLUDE_ADULT } from "../config/tmdbConfig";
-import { SEARCH_MAX_PEOPLE_FOR_CAST_CHAIN, SEARCH_MAX_RESULTS_PER_SECTION } from "../config/searchConfig";
+import { SEARCH_MAX_PEOPLE_FOR_CAST_CHAIN } from "../config/searchConfig";
 import type { Movie } from "../types/Movie";
 import type { Person } from "../types/Person";
 import type { PersonMovieCredits } from "../types/PersonMovieCredits";
@@ -117,5 +117,5 @@ export const getCastSearchResults = async (query: string): Promise<Movie[]> => {
 
     const moviesSelected = Array.from(moviesById.values());
 
-    return moviesSelected.slice(0, SEARCH_MAX_RESULTS_PER_SECTION);
+    return moviesSelected;
 }
