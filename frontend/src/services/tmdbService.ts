@@ -1,4 +1,5 @@
 import { TMDB_BASE_URL, DEFAULT_DISCOVER_PARAMS, getTodayFormatted, DEFAULT_INCLUDE_ADULT } from "../config/tmdbConfig";
+import { SEARCH_MAX_PEOPLE_FOR_CAST_CHAIN, SEARCH_MAX_RESULTS_PER_SECTION } from "../config/searchConfig";
 import type { Movie } from "../types/Movie";
 import type { Person } from "../types/Person";
 import type { PersonMovieCredits } from "../types/PersonMovieCredits";
@@ -94,4 +95,27 @@ export const getPersonMovieCredits = async (personId: number): Promise<PersonMov
     const result = await response.json();
 
     return result;
+}
+
+export const getCastSearchResults = async (query: string): Promise<Movie[]> => {
+
+    const personsResponse = await searchPeople(query);
+    const topPersons = personsResponse.results.slice(0, SEARCH_MAX_PEOPLE_FOR_CAST_CHAIN);
+    const creditsPromises = topPersons.map(person => getPersonMovieCredits(person.id));
+    const creditsList = await Promise.all(creditsPromises);
+    
+    const movies = creditsList.flatMap(credit => {
+        const directedMovies = credit.crew.filter(crewCredit => crewCredit.job === "Director");
+        return [...credit.cast, ...directedMovies];
+    });
+
+    const moviesById = new Map<number, Movie>();
+    
+    movies.forEach(movie => {
+        moviesById.set(movie.id, movie);
+    });
+
+    const moviesSelected = Array.from(moviesById.values());
+
+    return moviesSelected.slice(0, SEARCH_MAX_RESULTS_PER_SECTION);
 }
