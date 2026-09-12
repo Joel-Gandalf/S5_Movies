@@ -21,7 +21,10 @@ export const ExplorePage = () => {
             {requestStatus === 'success' && (movies.length > 0 ? (
                 <>
                     <MovieGrid movies={movies} />
-                    <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange} />
                 </>
             ) : (
                 <EmptyState message={content.explore.noMoviesFound} />

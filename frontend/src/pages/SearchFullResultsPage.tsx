@@ -1,30 +1,19 @@
-import { useState } from "react";
 import { useSearchParams } from "react-router";
+import { useSearchFullResults } from "../hooks/useSearchFullResults";
 import { MovieGrid } from "../components/MovieGrid";
 import { PersonGrid } from "../components/PersonGrid";
+import { LoadingSpinner } from "../components/LoadingSpinner";
+import { ErrorMessage } from "../components/ErrorMessage";
+import { EmptyState } from "../components/EmptyState";
 import { Pagination } from "../components/Pagination";
-import type { Movie } from "../types/Movie";
-import type { Person } from "../types/Person";
 import content from "../config/content.json";
-
-const exampleMovies: Movie[] = [
-    { id: 1, title: "Ejemplo de película uno", poster_path: null, release_date: "2020-03-15", vote_average: 7.2 },
-    { id: 2, title: "Ejemplo de película dos", poster_path: null, release_date: "2018-11-02", vote_average: 6.5 },
-];
-
-const examplePersons: Person[] = [
-    { id: 1, name: "Persona de ejemplo uno", profile_path: null, known_for_department: "Acting" },
-    { id: 2, name: "Persona de ejemplo dos", profile_path: null, known_for_department: "Directing" },
-];
-
-const EXAMPLE_TOTAL_PAGES = 3;
 
 export const SearchFullResultsPage = () => {
     const [searchParams] = useSearchParams();
     const query = searchParams.get("q") ?? "";
     const type = searchParams.get("type");
 
-    const [currentPage, setCurrentPage] = useState(1);
+    const { movies, people, requestStatus, currentPage, totalPages, handlePageChange } = useSearchFullResults(query, type);
 
     let title: string;
     let resultsGrid;
@@ -32,15 +21,15 @@ export const SearchFullResultsPage = () => {
     switch (type) {
         case "movies":
             title = content.search.sectionTitles.movies;
-            resultsGrid = <MovieGrid movies={exampleMovies} />;
+            resultsGrid = <MovieGrid movies={movies} />;
             break;
         case "persons":
             title = content.search.sectionTitles.people;
-            resultsGrid = <PersonGrid persons={examplePersons} />;
+            resultsGrid = <PersonGrid persons={people} />;
             break;
         case "cast":
             title = content.search.sectionTitles.cast;
-            resultsGrid = <MovieGrid movies={exampleMovies} />;
+            resultsGrid = <MovieGrid movies={movies} />;
             break;
         default:
             title = content.search.noResults;
@@ -49,13 +38,23 @@ export const SearchFullResultsPage = () => {
 
     return (
         <section>
-            <h1>{`${title}: "${query}"`}</h1>
-            {resultsGrid}
-            <Pagination
-                currentPage={currentPage}
-                totalPages={EXAMPLE_TOTAL_PAGES}
-                onPageChange={setCurrentPage}
-            />
+            <div>
+                <h1>{`${title}: "${query}"`}</h1>
+            </div>
+            {requestStatus === 'loading' && <LoadingSpinner />}
+            {requestStatus === 'error' && <ErrorMessage />}
+            {requestStatus === 'success' && ((movies.length > 0 || people.length > 0) ? (
+                <>
+                    {resultsGrid}
+                    <Pagination 
+                        currentPage={currentPage} 
+                        totalPages={totalPages} 
+                        onPageChange={handlePageChange} 
+                    />
+                </>
+            ) : (
+                <EmptyState message={content.search.noResults} />
+            ))}
         </section>
     );
 };
