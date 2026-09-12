@@ -48,6 +48,9 @@ export const useSearchFullResults = (query: string, type: string | null) => {
                         break;
                     }
                     default:
+                        setMovies([]);
+                        setPeople([]);
+                        setTotalPages(0);
                         break;
                 }
                 if (!ignore) setRequestStatus('success');
