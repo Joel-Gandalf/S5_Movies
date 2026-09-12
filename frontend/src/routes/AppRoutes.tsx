@@ -9,6 +9,7 @@ import { FavoritesPage } from '../pages/FavoritesPage';
 import { NotFound } from '../pages/NotFound';
 import { MovieDetailPage } from '../pages/MovieDetailPage';
 import { PersonDetailPage } from '../pages/PersonDetailPage';
+import { SearchFullResultsPage } from '../pages/SearchFullResultsPage';
 import { PrivateRouteGuard } from './PrivateRouteGuard';
 
 export const AppRoutes = () => {
@@ -18,6 +19,7 @@ export const AppRoutes = () => {
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/explore" element={<ExplorePage />} />
+          <Route path="/search" element={<SearchFullResultsPage />} />
           <Route path="/movies/:id" element={<MovieDetailPage />} />
           <Route path="/people/:id" element={<PersonDetailPage />} />
           <Route path="/login" element={<LoginPage />} />
