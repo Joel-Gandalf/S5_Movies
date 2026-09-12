@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { Outlet, Link } from "react-router";
+import { Outlet, Link, useLocation } from "react-router";
 import { Navbar } from "./Navbar";
 import { AccountNav } from "./AccountNav";
+import { SearchBar } from './SearchBar';
 import styles from '../styles/Layout.module.css';
 
 export const Layout = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { pathname } = useLocation();
 
     const toggleMenu = () => {
         setIsMenuOpen((prev) => !prev);
@@ -41,6 +43,7 @@ export const Layout = () => {
                             <AccountNav />
                         </div>
                     </nav>
+                    {pathname !== '/' && <SearchBar />}
                 </div>
             </header>
 
