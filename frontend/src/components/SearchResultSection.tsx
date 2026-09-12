@@ -26,14 +26,14 @@ export const SearchResultSection = ({ title, results, link }: SearchResultSectio
         return (
             <section>
                 <h2>{title}</h2>
-                <ul>
+                <ul role="listbox" aria-label={title}>
                     {moviesResults.map(movie =>
-                        <li key={movie.id}>
+                        <li key={movie.id} role="option">
                             <SearchResultItem type="movie" movie={movie} />
                         </li>
                     )}
                 </ul>
-                {movies.length > SEARCH_MAX_RESULTS_PER_SECTION && <Link to={link}>Mostrar todos los resultados</Link>}
+                {movies.length > SEARCH_MAX_RESULTS_PER_SECTION && <Link to={link} aria-label={`Mostrar todos los resultados de ${title}`}>Mostrar todos los resultados</Link>}
             </section>
         );
     }
@@ -47,14 +47,14 @@ export const SearchResultSection = ({ title, results, link }: SearchResultSectio
     return (
         <section>
             <h2>{title}</h2>
-            <ul>
+            <ul role="listbox" aria-label={title}>
                 {personsResults.map(person =>
-                    <li key={person.id}>
+                    <li key={person.id} role="option">
                         <SearchResultItem type="person" person={person} />
                     </li>
                 )}
             </ul>
-            {persons.length > SEARCH_MAX_RESULTS_PER_SECTION && <Link to={link}>Mostrar todos los resultados</Link>}
+            {persons.length > SEARCH_MAX_RESULTS_PER_SECTION && <Link to={link} aria-label={`Mostrar todos los resultados de ${title}`}>Mostrar todos los resultados</Link>}
         </section>
     );
 }

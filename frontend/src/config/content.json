@@ -12,6 +12,7 @@
   },
   "search": {
     "placeholder": "Buscar películas, actores y directores...",
+    "ariaLabel": "Buscar en el catálogo",
     "sectionTitles": {
       "movies": "Título",
       "people": "Personas",

@@ -7,30 +7,34 @@ interface SearchDropDownProps {
     query: string;
 }
 
-export const SearchDropdown = ({results, query}: SearchDropDownProps) => {
+export const SearchDropdown = ({ results, query }: SearchDropDownProps) => {
 
-    const {movies, people, cast} = results;
-    if (movies.length === 0 && people.length === 0 && cast.length === 0) {
-        return <p>{content.search.noResults}</p>;
-    }
-    
+    const { movies, people, cast } = results;
+    const hasResults = movies.length > 0 || people.length > 0 || cast.length > 0;
+
     return (
-        <div>
-            <SearchResultSection 
-                title={content.search.sectionTitles.movies}
-                results={{type:"movies", movies: movies}}
-                link={`/search?q=${encodeURIComponent(query)}&type=movies`}
-            />
-            <SearchResultSection 
-                title={content.search.sectionTitles.people}
-                results={{type:"persons", persons: people}}
-                link={`/search?q=${encodeURIComponent(query)}&type=persons`}
-            />
-            <SearchResultSection 
-                title={content.search.sectionTitles.cast}
-                results={{type:"movies", movies: cast}}
-                link={`/search?q=${encodeURIComponent(query)}&type=cast`}
-            />
+        <div aria-live="polite">
+            {!hasResults ? (
+                <p>{content.search.noResults}</p>
+            ) : (
+                <>
+                    <SearchResultSection
+                        title={content.search.sectionTitles.movies}
+                        results={{ type: "movies", movies: movies }}
+                        link={`/search?q=${encodeURIComponent(query)}&type=movies`}
+                    />
+                    <SearchResultSection
+                        title={content.search.sectionTitles.people}
+                        results={{ type: "persons", persons: people }}
+                        link={`/search?q=${encodeURIComponent(query)}&type=persons`}
+                    />
+                    <SearchResultSection
+                        title={content.search.sectionTitles.cast}
+                        results={{ type: "movies", movies: cast }}
+                        link={`/search?q=${encodeURIComponent(query)}&type=cast`}
+                    />
+                </>
+            )}
         </div>
     );
 }
