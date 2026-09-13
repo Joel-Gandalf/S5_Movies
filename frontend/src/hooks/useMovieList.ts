@@ -14,24 +14,32 @@ export const useMovieList = () => {
         setCurrentPage(page);
     }
 
-    useEffect(()=> {
+    useEffect(() => {
+        let ignore = false;
+
         const resultsManagement = async () => {
             try {
                 setRequestStatus('loading');
-                const {results, total_pages} = await discoverMovies(currentPage);
+                const { results, total_pages } = await discoverMovies(currentPage);
+                if (ignore) return;
                 setMovies(results);
                 setTotalPages(total_pages);
                 setRequestStatus('success');
             } catch (error) {
+                if (ignore) return;
                 setRequestStatus('error');
-                 if (error instanceof Error) {
+                if (error instanceof Error) {
                     console.error(error.message);
                 }
             }
         }
 
-        resultsManagement(); 
+        resultsManagement();
+
+        return () => {
+            ignore = true;
+        };
     }, [currentPage]);
 
-    return {movies, requestStatus, currentPage, totalPages, handlePageChange}
+    return { movies, requestStatus, currentPage, totalPages, handlePageChange }
 }
