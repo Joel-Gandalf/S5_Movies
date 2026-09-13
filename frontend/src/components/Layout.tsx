@@ -21,30 +21,36 @@ export const Layout = () => {
                         MOVIES FACTOR
                     </Link>
 
-                    <button
-                        type="button"
-                        className={styles.menuToggle}
-                        aria-expanded={isMenuOpen}
-                        aria-controls="main-nav-group"
-                        onClick={toggleMenu}
-                    >
-                        ☰
-                    </button>
-                    
-                    <nav
-                        id="main-nav-group"
-                        aria-label="Navegación principal"
-                        className={`${styles.navGroup} ${isMenuOpen ? styles.navGroupOpen : ''}`}
-                    >
-                        <div className={styles.primaryNav}>
-                            <Navbar />
-                        </div>
-                        <div className={styles.accountNavWrapper}>
-                            <AccountNav />
-                        </div>
-                    </nav>
-                    {pathname !== '/' && <SearchBar />}
+                    <div className={`${styles.menuPanel} ${isMenuOpen ? styles.menuPanelOpen : ''}`}>
+                        <button
+                            type="button"
+                            className={styles.menuToggle}
+                            aria-expanded={isMenuOpen}
+                            aria-controls="main-nav-group"
+                            onClick={toggleMenu}
+                        >
+                            ☰
+                        </button>
+                        <nav
+                            id="main-nav-group"
+                            aria-label="Navegación principal"
+                            className={`${styles.navLinks} ${isMenuOpen ? styles.navLinksOpen : ''}`}
+                        >
+                            <div className={styles.primaryNav}>
+                                <Navbar />
+                            </div>
+                            <div className={styles.accountNavWrapper}>
+                                <AccountNav />
+                            </div>
+                        </nav>
+                    </div>
                 </div>
+
+                {pathname !== '/' && (
+                    <div className={styles.searchRow}>
+                        <SearchBar />
+                    </div>
+                )}
             </header>
 
             <main className={styles.mainContent}>

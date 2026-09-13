@@ -14,10 +14,11 @@
     align-items: center;
     flex-wrap: wrap;
     gap: var(--spacing-md);
+    min-height: 2.75rem;
     max-width: var(--content-max-width);
     margin-inline: auto;
     padding-inline: var(--content-padding-inline);
-    padding-block: var(--spacing-sm);
+    padding-block: 0 0.75rem;
 }
 
 .logoSlot {
@@ -28,24 +29,58 @@
     text-decoration: none;
 }
 
+.menuPanel {
+    position: absolute;
+    top: var(--spacing-xs); /* antes: top: 50%; transform: translateY(-50%); → dependía de la altura propia del panel, que cambia al abrir el menú */
+    right: 0;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--spacing-xs);
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.menuPanelOpen {
+    /* solo cambian colores, nunca geometría (position/padding/transform) */
+    border-color: var(--color-border);
+    background-color: var(--color-surface);
+}
 .menuToggle {
-    margin-left: auto;
+    align-self: flex-end;
     background: none;
     border: none;
     color: var(--color-text);
     font-size: var(--font-size-xl);
+    line-height: 1;
     cursor: pointer;
 }
 
-.navGroup {
+.navLinks {
     display: none;
 }
 
-.navGroupOpen {
+.navLinksOpen {
+    /* fluye dentro de .menuPanel (que ya está posicionado), así el panel simplemente "crece" hacia abajo desde el botón */
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: var(--spacing-md);
-    width: 100%;
+    width: max-content;
+    max-width: 16rem;
+    margin-top: var(--spacing-sm);
+}
+
+.searchRow {
+    display: flex;
+    justify-content: center;
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+    padding-inline: var(--content-padding-inline);
+    padding-block: 0 0.75rem;
 }
 
 .mainContent {
@@ -80,7 +115,8 @@
         display: none;
     }
 
-    .navGroup {
+    .menuPanel,
+    .navLinks {
         display: contents;
     }
 
@@ -93,6 +129,10 @@
 
     .accountNavWrapper {
         margin-left: auto;
+    }
+
+    .searchRow {
+        padding-inline: var(--spacing-lg);
     }
 
     .mainContent,
