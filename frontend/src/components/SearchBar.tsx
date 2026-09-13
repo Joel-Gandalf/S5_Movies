@@ -13,20 +13,30 @@ export const SearchBar = () => {
     const [query, setQuery] = useState("");
     const [isManuallyClosed, setIsManuallyClosed] = useState(false);
     const searchContainerRef = useRef<HTMLDivElement>(null);
-    const { pathname } = useLocation();
+    const justNavigatedRef = useRef(false);
+    const location = useLocation();
 
     const { movies, people, cast, requestStatus } = useSearchDropdown(query);
 
     useClickOutside(searchContainerRef, () => setIsManuallyClosed(true));
 
     useEffect(() => {
+        justNavigatedRef.current = true;
         setQuery("");
         setIsManuallyClosed(true);
-    }, [pathname]);
+    }, [location.key]);
 
     const handleQueryChange = (value: string) => {
         setQuery(value);
         setIsManuallyClosed(false);
+    };
+
+    const handleInputFocus = () => {
+        if (justNavigatedRef.current) {
+            justNavigatedRef.current = false;
+            return;
+        }
+        if (query.trim() !== "") setIsManuallyClosed(false);
     };
 
     const showDropdown = requestStatus !== 'idle' && !isManuallyClosed;
@@ -58,7 +68,11 @@ export const SearchBar = () => {
 
     return (
         <div ref={searchContainerRef} onKeyDown={handleKeyDown} className={styles.container}>
-            <SearchInput value={query} onChange={handleQueryChange} />
+            <SearchInput
+                value={query}
+                onChange={handleQueryChange}
+                onFocus={handleInputFocus}
+            />
 
             {showDropdown && (
                 <>
