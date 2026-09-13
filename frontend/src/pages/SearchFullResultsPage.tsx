@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router";
+import { useSearchParams, Navigate } from "react-router";
 import { useSearchFullResults } from "../hooks/useSearchFullResults";
 import { MovieGrid } from "../components/MovieGrid";
 import { PersonGrid } from "../components/PersonGrid";
@@ -15,6 +15,10 @@ export const SearchFullResultsPage = () => {
     const type = searchParams.get("type");
 
     const { movies, people, requestStatus, currentPage, totalPages, handlePageChange } = useSearchFullResults(query, type);
+
+    if (type !== "movies" && type !== "persons" && type !== "cast") {
+        return <Navigate to="/explore" replace />;
+    }
 
     let title: string;
     let resultsGrid;
