@@ -15,6 +15,7 @@
     padding-block: var(--spacing-md);
     padding-inline: var(--spacing-lg);
     z-index: 20;
+    scrollbar-color: var(--color-text-muted) var(--color-surface-elevated);
 }
 
 .noResults {
