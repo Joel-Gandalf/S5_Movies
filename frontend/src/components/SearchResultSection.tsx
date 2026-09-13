@@ -3,6 +3,7 @@ import type { Person } from "../types/Person";
 import { Link } from "react-router";
 import { SearchResultItem } from "./SearchResultItem";
 import { SEARCH_MAX_RESULTS_PER_SECTION } from "../config/searchConfig";
+import styles from "../styles/SearchResultSection.module.css";
 
 type ResultsProps =
     | { type: "movies", movies: Movie[] }
@@ -25,15 +26,22 @@ export const SearchResultSection = ({ title, results, link }: SearchResultSectio
 
         return (
             <section>
-                <h2>{title}</h2>
-                <ul role="listbox" aria-label={title}>
+                <div className={styles.header}>
+                    <h2 className={styles.title}>{title}</h2>
+                    {movies.length > SEARCH_MAX_RESULTS_PER_SECTION && <Link
+                        to={link}
+                        aria-label={`Mostrar todos los resultados de ${title}`}
+                        className={styles.viewAll}
+                    >Mostrar todos
+                    </Link>}
+                </div>
+                <ul role="listbox" aria-label={title} className={styles.list}>
                     {moviesResults.map(movie =>
                         <li key={movie.id} role="option">
                             <SearchResultItem type="movie" movie={movie} />
                         </li>
                     )}
                 </ul>
-                {movies.length > SEARCH_MAX_RESULTS_PER_SECTION && <Link to={link} aria-label={`Mostrar todos los resultados de ${title}`}>Mostrar todos los resultados</Link>}
             </section>
         );
     }
@@ -46,15 +54,22 @@ export const SearchResultSection = ({ title, results, link }: SearchResultSectio
 
     return (
         <section>
-            <h2>{title}</h2>
-            <ul role="listbox" aria-label={title}>
+            <div className={styles.header}>
+                <h2 className={styles.title}>{title}</h2>
+                {persons.length > SEARCH_MAX_RESULTS_PER_SECTION && <Link
+                    to={link}
+                    aria-label={`Mostrar todos los resultados de ${title}`}
+                    className={styles.viewAll}
+                >Mostrar todos
+                </Link>}
+            </div>
+            <ul role="listbox" aria-label={title} className={styles.list}>
                 {personsResults.map(person =>
                     <li key={person.id} role="option">
                         <SearchResultItem type="person" person={person} />
                     </li>
                 )}
             </ul>
-            {persons.length > SEARCH_MAX_RESULTS_PER_SECTION && <Link to={link} aria-label={`Mostrar todos los resultados de ${title}`}>Mostrar todos los resultados</Link>}
         </section>
     );
 }

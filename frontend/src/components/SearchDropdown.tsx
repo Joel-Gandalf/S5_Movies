@@ -1,6 +1,7 @@
 import { SearchResultSection } from "./SearchResultSection";
 import content from "../config/content.json";
 import type { SearchResults } from "../types/SearchResults";
+import styles from "../styles/SearchDropdown.module.css";
 
 interface SearchDropDownProps {
     results: SearchResults;
@@ -13,9 +14,9 @@ export const SearchDropdown = ({ results, query }: SearchDropDownProps) => {
     const hasResults = movies.length > 0 || people.length > 0 || cast.length > 0;
 
     return (
-        <div aria-live="polite">
+        <div aria-live="polite" className={styles.dropdown}>
             {!hasResults ? (
-                <p>{content.search.noResults}</p>
+                <p className={styles.noResults}>{content.search.noResults}</p>
             ) : (
                 <>
                     <SearchResultSection

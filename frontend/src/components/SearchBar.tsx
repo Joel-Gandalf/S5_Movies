@@ -6,6 +6,7 @@ import { useClickOutside } from "../hooks/useClickOutside";
 import { SearchDropdown } from "./SearchDropdown";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { ErrorMessage } from "../components/ErrorMessage";
+import styles from "../styles/SearchBar.module.css";
 
 export const SearchBar = () => {
     const [query, setQuery] = useState("");
@@ -49,7 +50,7 @@ export const SearchBar = () => {
     };
 
     return (
-        <div ref={searchContainerRef} onKeyDown={handleKeyDown}>
+        <div ref={searchContainerRef} onKeyDown={handleKeyDown} className={styles.container}>
             <SearchInput value={query} onChange={handleQueryChange} />
 
             {showDropdown && (
