@@ -1,5 +1,6 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import type { KeyboardEvent } from "react";
+import { useLocation } from "react-router";
 import { SearchInput } from "./SearchInput";
 import { useSearchDropdown } from "../hooks/useSearchDropdown";
 import { useClickOutside } from "../hooks/useClickOutside";
@@ -12,10 +13,16 @@ export const SearchBar = () => {
     const [query, setQuery] = useState("");
     const [isManuallyClosed, setIsManuallyClosed] = useState(false);
     const searchContainerRef = useRef<HTMLDivElement>(null);
+    const { pathname } = useLocation();
 
     const { movies, people, cast, requestStatus } = useSearchDropdown(query);
 
     useClickOutside(searchContainerRef, () => setIsManuallyClosed(true));
+
+    useEffect(() => {
+        setQuery("");
+        setIsManuallyClosed(true);
+    }, [pathname]);
 
     const handleQueryChange = (value: string) => {
         setQuery(value);
