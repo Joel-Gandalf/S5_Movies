@@ -5,6 +5,7 @@ import { getPosterUrl } from "../utils/getPosterUrl";
 import { getProfileImageUrl } from "../utils/getProfileImageUrl";
 import { SEARCH_POSTER_SIZE, SEARCH_PROFILE_SIZE } from "../config/tmdbConfig";
 import { getPersonRoleLabel } from "../utils/getPersonRoleLabel";
+import styles from "../styles/SearchResultItem.module.css";
 
 type SearchResultItemProps =
     | { type: "movie"; movie: Movie }
@@ -18,12 +19,12 @@ export const SearchResultItem = (props: SearchResultItemProps) => {
         const yearPublication = movie.release_date.slice(0, 4);
 
         return (
-            <Link to={`/movies/${movie.id}`}>
-                <figure>
-                    <img src={posterUrl} alt="Poster de la película" />
-                    <figcaption>
-                        <p>{movie.title}</p>
-                        <p>{`(${yearPublication})`}</p>
+            <Link to={`/movies/${movie.id}`} className={styles.item}>
+                <figure className={styles.figure}>
+                    <img src={posterUrl} alt="Poster de la película" className={`${styles.image} ${styles.poster}`}/>
+                    <figcaption className={styles.caption}>
+                        <p className={styles.title}>{movie.title}</p>
+                        <p className={styles.meta}>{`(${yearPublication})`}</p>
                     </figcaption>
                 </figure>
             </Link>
@@ -34,12 +35,12 @@ export const SearchResultItem = (props: SearchResultItemProps) => {
     const roleLabel = getPersonRoleLabel(person.known_for_department);
 
     return (
-        <Link to={`/people/${person.id}`}>
-            <figure>
-                <img src={profileImageUrl} alt="Fotografía de" />
-                <figcaption>
-                    <p>{person.name}</p>
-                    <p>{roleLabel}</p>
+        <Link to={`/people/${person.id}`} className={styles.item}>
+            <figure className={styles.figure}>
+                <img src={profileImageUrl} alt="Fotografía de" className={`${styles.image} ${styles.profile}`}/>
+                <figcaption className={styles.caption}>
+                    <p className={styles.title}>{person.name}</p>
+                    <p className={styles.meta}>{roleLabel}</p>
                 </figcaption>
             </figure>
         </Link>

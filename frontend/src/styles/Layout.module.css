@@ -31,7 +31,7 @@
 
 .menuPanel {
     position: absolute;
-    top: var(--spacing-xs); /* antes: top: 50%; transform: translateY(-50%); → dependía de la altura propia del panel, que cambia al abrir el menú */
+    top: var(--spacing-xs);
     right: 0;
     z-index: 30;
     display: flex;
@@ -45,7 +45,6 @@
 }
 
 .menuPanelOpen {
-    /* solo cambian colores, nunca geometría (position/padding/transform) */
     border-color: var(--color-border);
     background-color: var(--color-surface);
 }
@@ -64,7 +63,6 @@
 }
 
 .navLinksOpen {
-    /* fluye dentro de .menuPanel (que ya está posicionado), así el panel simplemente "crece" hacia abajo desde el botón */
     display: flex;
     flex-direction: column;
     align-items: flex-start;

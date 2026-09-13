@@ -12,7 +12,8 @@
     box-shadow: var(--shadow);
     max-height: 70vh;
     overflow-y: auto;
-    padding: var(--spacing-md);
+    padding-block: var(--spacing-md);
+    padding-inline: var(--spacing-lg);
     z-index: 20;
 }
 
