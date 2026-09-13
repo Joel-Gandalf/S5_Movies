@@ -13,7 +13,11 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
 
         <Link to={`/movies/${movie.id}`} className={styles.card}>
             <figure className={styles.figure}>
-                <img src={posterUrl} alt="Poster de la película" className={styles.poster} />
+                <img 
+                    src={posterUrl} 
+                    alt="Poster de la película" 
+                    className={movie.poster_path ? styles.poster : styles.posterPlaceholder} 
+                />
                 <div className={styles.rating}>
                     <img src={starFilled} alt="Estrella con valoración:" className={styles.star} />
                     <p className={styles.ratingValue}>{movie.vote_average.toFixed(1)}</p>

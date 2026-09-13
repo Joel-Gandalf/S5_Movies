@@ -13,7 +13,11 @@ export const PersonCard = ({ person }: { person: Person }) => {
 
         <Link to={`/people/${person.id}`} className={styles.card}>
             <figure className={styles.figure}>
-                <img src={profileImageUrl} alt="Fotografía de" className={styles.poster} />
+                <img 
+                    src={profileImageUrl} 
+                    alt="Fotografía de" 
+                    className={person.profile_path ? styles.poster : styles.posterPlaceholder} 
+                />
                 <figcaption className={styles.caption}>
                     <h3 className={styles.title}>{person.name}</h3>
                     <p className={styles.meta}>{roleLabel}</p>

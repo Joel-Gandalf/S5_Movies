@@ -33,9 +33,3 @@
     border-color: var(--color-primary);
     box-shadow: 0 0 4px 1px rgba(212, 175, 55, 0.6), inset 0 0 0 1px var(--color-primary);
 }
-
-/* @media (min-width: 768px) {
-    .wrapper {
-        width: 30rem;
-    }
-} */

@@ -7,6 +7,7 @@ import { ErrorMessage } from "../components/ErrorMessage";
 import { EmptyState } from "../components/EmptyState";
 import { Pagination } from "../components/Pagination";
 import content from "../config/content.json";
+import styles from "../styles/SearchFullResultsPage.module.css";
 
 export const SearchFullResultsPage = () => {
     const [searchParams] = useSearchParams();
@@ -38,8 +39,8 @@ export const SearchFullResultsPage = () => {
 
     return (
         <section>
-            <div>
-                <h1>{`${title}: "${query}"`}</h1>
+            <div className={styles.page}>
+                <h1 className={styles.title}>{title}: <span className={styles.query}>"{query}"</span></h1>
             </div>
             {requestStatus === 'loading' && <LoadingSpinner />}
             {requestStatus === 'error' && <ErrorMessage />}
