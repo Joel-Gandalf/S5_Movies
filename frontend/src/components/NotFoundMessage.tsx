@@ -1,5 +1,5 @@
 import content from "../config/content.json";
-import styles from "../styles/ErrorMessage.module.css";
+import styles from "../styles/NotFoundMessage.module.css";
 
 interface NotFoundMessageProps {
   message?: string;
