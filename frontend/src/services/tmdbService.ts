@@ -125,22 +125,35 @@ export const getCastSearchResults = async (query: string): Promise<Movie[]> => {
 
 export const getMovieDetail = async (movieId: number): Promise<MovieDetail> => {
 
-    const response = await fetch(`${TMDB_BASE_URL}/movie/${movieId}?append_to_response=credits,videos`, {
+    const detailResponse = await fetch(`${TMDB_BASE_URL}/movie/${movieId}?append_to_response=credits&language=es-ES`, {
         headers: {
             Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
             accept: 'application/json',
         },
     });
 
-    if (response.status === 404) {
+    if (detailResponse.status === 404) {
         throw new MovieNotFoundError(`Movie ${movieId} not found`);
     }
 
-    if (!response.ok) {
-        throw new Error(`Error HTTP: ${response.status}`);
+    if (!detailResponse.ok) {
+        throw new Error(`Error HTTP: ${detailResponse.status}`);
     }
 
-    const result = await response.json();
+    const movieDetail = await detailResponse.json();
 
-    return result;
+    const videosResponse = await fetch(`${TMDB_BASE_URL}/movie/${movieId}/videos`, {
+        headers: {
+            Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
+            accept: 'application/json',
+        },
+    });
+
+    if (!videosResponse.ok) {
+        throw new Error(`Error HTTP: ${videosResponse.status}`);
+    }
+
+    const videos = await videosResponse.json();
+
+    return { ...movieDetail, videos };
 }
