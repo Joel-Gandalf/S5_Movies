@@ -6,6 +6,7 @@ import { TrailerEmbed } from "../components/TrailerEmbed";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { ErrorMessage } from "../components/ErrorMessage";
 import { NotFoundMessage } from "../components/NotFoundMessage";
+import { MOVIE_DETAIL_MAX_CAST } from "../config/tmdbConfig";
 import content from "../config/content.json";
 
 export const MovieDetailPage = () => {
@@ -23,12 +24,14 @@ export const MovieDetailPage = () => {
         return <ErrorMessage />;
     }
 
+    const cast = movie.credits.cast.slice(0, MOVIE_DETAIL_MAX_CAST);
+
     return (
         <>
             <MovieHero movie={movie} />
             <DirectorLink director={director} />
             <h2>Actores y actrices: </h2>
-            <CastList castMembers={movie.credits.cast} />
+            <CastList castMembers={cast} />
             <TrailerEmbed trailer={trailer} />
         </>
     );
