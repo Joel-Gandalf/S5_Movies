@@ -20,6 +20,9 @@
     },
     "noResults": "No se han encontrado resultados para tu búsqueda."
   },
+  "movieDetail": {
+    "notFound":"Película no encontrada"
+  },
   "account": {
     "noRatingsYet": "Todavía no has puntuado ninguna película."
   },
