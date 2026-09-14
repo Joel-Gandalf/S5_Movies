@@ -16,7 +16,7 @@ export const DirectorLink = ({director}: DirectorLinkProps) => {
     return(
 
         <Link to={`/people/${director.id}`}>
-            <p>{director.name}</p>
+            <p>{`Director/a: ${director.name}`}</p>
         </Link>
     );
 }
