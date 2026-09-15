@@ -1,0 +1,15 @@
+.wrapper {
+    grid-area: trailer;
+    width: 100%;
+    max-width: calc(6 * 7rem + 5 * var(--spacing-md));
+    aspect-ratio: 16 / 9;
+    border-radius: var(--spacing-xs);
+    overflow: hidden;
+    min-width: 0;
+}
+
+.iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}

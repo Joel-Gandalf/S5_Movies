@@ -30,13 +30,15 @@ export const MovieDetailPage = () => {
         <>
             <div className={styles.layout}>
                 <MovieHero movie={movie} director={director}/>
-
+                
+                <TrailerEmbed trailer={trailer} />
+                
                 <div className={styles.castArea}>
                     <h2 className={styles.castHeading}>Actores y actrices: </h2>
                     <CastList castMembers={cast} />
                 </div>
             </div>
-            <TrailerEmbed trailer={trailer} />
+            
         </>
     );
 }

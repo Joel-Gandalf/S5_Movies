@@ -4,6 +4,7 @@
     grid-template-areas:
         "poster"
         "info"
+        "trailer"
         "cast";
     gap: var(--spacing-sm);
     row-gap: var(--spacing-md);
@@ -29,6 +30,7 @@
         grid-template-columns: 20rem 1fr;
         grid-template-areas:
             "poster info"
+            ".      trailer"
             ".      cast";
         align-items: start;
     }
