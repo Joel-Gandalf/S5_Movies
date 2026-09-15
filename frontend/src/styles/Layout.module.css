@@ -83,6 +83,8 @@
 
 .mainContent {
     flex: 1;
+    display: flex;
+    flex-direction: column;
     max-width: var(--content-max-width);
     margin-inline: auto;
     padding-inline: var(--content-padding-inline);
