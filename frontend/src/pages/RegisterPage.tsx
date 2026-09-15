@@ -37,7 +37,7 @@ export const RegisterPage = () => {
                 id="username"
                 label="Nombre de usuario"
                 type="text"
-                autoComplete="username"
+                autoComplete="off"
                 placeholder="Ej: joel83"
                 error={errors.username?.message}
                 registration={register("username", {
@@ -82,7 +82,7 @@ export const RegisterPage = () => {
             />
 
             {submitError && <p role="alert">{submitError}</p>}
-            
+
             <button type="submit">Registrarse</button>
         </form>
     );
