@@ -1,6 +1,6 @@
 import { FIREBASE_AUTH_ERROR_MESSAGES, DEFAULT_AUTH_ERROR_MESSAGE } from "../config/firebaseAuthErrors";
 
-type FirebaseAuthErrorLike = {
+export type FirebaseAuthErrorLike = {
     code: string;
 };
 

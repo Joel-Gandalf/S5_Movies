@@ -1,8 +1,11 @@
+import { useState } from "react";
+import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { FormField } from "../components/FormField";
 import type { RegisterFormData } from "../types/RegisterFormData";
 import { USERNAME_MIN_LENGTH, USERNAME_MAX_LENGTH } from "../config/authConfig";
+import { useAuth } from "../hooks/useAuth";
 
 const EMAIL_PATTERN = /^\S+@\S+\.\S+$/;
 
@@ -13,8 +16,19 @@ export const RegisterPage = () => {
         formState: { errors },
     } = useForm<RegisterFormData>();
 
-    const onSubmit: SubmitHandler<RegisterFormData> = (data) => {
-        console.log("Datos del formulario (envío simulado):", data);
+    const { register: registerUser } = useAuth();
+    const navigate = useNavigate();
+    const [submitError, setSubmitError] = useState<string | null>(null);
+
+    const onSubmit: SubmitHandler<RegisterFormData> = async (data) => {
+        setSubmitError(null);
+
+        try {
+            await registerUser(data);
+            navigate("/explore");
+        } catch (error) {
+            setSubmitError((error as Error).message);
+        }
     };
 
     return (
@@ -67,6 +81,8 @@ export const RegisterPage = () => {
                 })}
             />
 
+            {submitError && <p role="alert">{submitError}</p>}
+            
             <button type="submit">Registrarse</button>
         </form>
     );

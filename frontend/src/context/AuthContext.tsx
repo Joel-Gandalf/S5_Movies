@@ -1,10 +1,14 @@
 import { createContext, useEffect, useState, type ReactNode } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../services/firebaseConfig";
+import { mapFirebaseAuthError } from "../utils/mapFirebaseAuthError";
+import { registerUser } from "../services/authService";
 import type { AuthUser } from "../types/AuthUser";
 import type { AuthContextValue } from "../types/AuthContextValue";
 import type { RequestStatus } from "../types/RequestStatus";
 import type { RegisterFormData } from "../types/RegisterFormData";
+import type { FirebaseAuthErrorLike } from "../utils/mapFirebaseAuthError";
+
 
 export const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
@@ -33,8 +37,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         return () => unsubscribe();
     }, []);
 
-    const register = async (_data: RegisterFormData): Promise<void> => {
-        throw new Error("register: todavía no implementado");
+    const register = async (data: RegisterFormData): Promise<void> => {
+        try {
+            const registeredUser = await registerUser(data);
+            setUser(registeredUser);
+        } catch (error) {
+            throw new Error(mapFirebaseAuthError(error as FirebaseAuthErrorLike));
+        }
     };
 
     const value: AuthContextValue = { user, status, register };
