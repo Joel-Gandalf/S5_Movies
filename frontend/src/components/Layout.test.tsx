@@ -1,10 +1,18 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { MemoryRouter, Routes, Route } from 'react-router';
 import { Layout } from './Layout';
-import * as useAuthPlaceholderModule from '../hooks/useAuthPlaceholder';
+import * as useAuthModule from '../hooks/useAuth';
 import { PrivateRouteGuard } from '../routes/PrivateRouteGuard';
+import type { AuthContextValue } from '../types/AuthContextValue';
+
+vi.mock('firebase/auth', () => ({
+    getAuth: vi.fn(),
+    onAuthStateChanged: vi.fn(() => () => {}),
+    createUserWithEmailAndPassword: vi.fn(),
+    updateProfile: vi.fn(),
+}));
 
 // Páginas mínimas para montar el router de pruebas, sin depender de las páginas reales
 const HomeStub = () => <p>Home</p>;
@@ -32,7 +40,21 @@ const renderWithRouter = (initialRoute: string) => {
     );
 };
 
+// Sustituye lo que devuelve useAuth() sin necesidad de montar un AuthProvider real
+const mockAuth = (overrides: Partial<AuthContextValue> = {}) => {
+    vi.spyOn(useAuthModule, 'useAuth').mockReturnValue({
+        user: null,
+        status: 'success',
+        register: vi.fn(),
+        ...overrides,
+    });
+};
+
 describe('Layout — navegación (US-01)', () => {
+    beforeEach(() => {
+        mockAuth();
+    });
+
     // Escenario: La navegación es visible en cualquier pantalla
     //   Dado que estoy en cualquier pantalla de la aplicación
     //   Entonces veo la barra de navegación con los enlaces Inicio, Exploración y Favoritos
@@ -82,13 +104,9 @@ describe('Layout — navegación (US-01)', () => {
 });
 
 describe('AccountNav — sesión no iniciada (US-01)', () => {
-    // Antes de cada test de este bloque, forzamos isLoggedIn: false
+    // Antes de cada test de este bloque, forzamos user: null
     beforeEach(() => {
-        vi.spyOn(useAuthPlaceholderModule, 'useAuthPlaceholder').mockReturnValue({
-            isLoggedIn: false,
-            userName: '',
-            toggleLogin: vi.fn(),
-        });
+        mockAuth({ user: null });
     });
 
     // Escenario: Navegación sin sesión iniciada
@@ -117,12 +135,10 @@ describe('AccountNav — sesión no iniciada (US-01)', () => {
 });
 
 describe('AccountNav — sesión iniciada (US-01)', () => {
-    // Antes de cada test de este bloque, forzamos isLoggedIn: true
+    // Antes de cada test de este bloque, forzamos un usuario autenticado
     beforeEach(() => {
-        vi.spyOn(useAuthPlaceholderModule, 'useAuthPlaceholder').mockReturnValue({
-            isLoggedIn: true,
-            userName: 'Joel',
-            toggleLogin: vi.fn(),
+        mockAuth({
+            user: { uid: 'u1', email: 'joel@example.com', displayName: 'Joel' },
         });
     });
 

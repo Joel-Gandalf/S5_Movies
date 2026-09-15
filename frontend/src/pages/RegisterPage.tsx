@@ -34,7 +34,7 @@ export const RegisterPage = () => {
 
     return (
         <div className={styles.page}>
-            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+            <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
                 <FormField
                     id="username"
                     label="Nombre de usuario"
