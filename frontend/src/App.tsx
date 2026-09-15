@@ -1,8 +1,11 @@
-import { AppRoutes } from './routes/AppRoutes'
+import { AppRoutes } from './routes/AppRoutes';
+import { AuthProvider } from './context/AuthContext';
 
 export const App = () => {
 
     return (
-            <AppRoutes /> 
-    )
+            <AuthProvider>
+                <AppRoutes />
+            </AuthProvider> 
+    );
 }
