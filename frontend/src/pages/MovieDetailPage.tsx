@@ -1,13 +1,13 @@
 import { useMovieDetail } from "../hooks/useMovieDetail";
 import { MovieHero } from "../components/MovieHero";
 import { CastList } from "../components/CastList";
-import { DirectorLink } from "../components/DirectorLink";
 import { TrailerEmbed } from "../components/TrailerEmbed";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { ErrorMessage } from "../components/ErrorMessage";
 import { NotFoundMessage } from "../components/NotFoundMessage";
 import { MOVIE_DETAIL_MAX_CAST } from "../config/tmdbConfig";
 import content from "../config/content.json";
+import styles from "../styles/MovieDetailPage.module.css";
 
 export const MovieDetailPage = () => {
     const { movie, requestStatus, director, trailer } = useMovieDetail();
@@ -28,10 +28,14 @@ export const MovieDetailPage = () => {
 
     return (
         <>
-            <MovieHero movie={movie} />
-            <DirectorLink director={director} />
-            <h2>Actores y actrices: </h2>
-            <CastList castMembers={cast} />
+            <div className={styles.layout}>
+                <MovieHero movie={movie} director={director}/>
+
+                <div className={styles.castArea}>
+                    <h2 className={styles.castHeading}>Actores y actrices: </h2>
+                    <CastList castMembers={cast} />
+                </div>
+            </div>
             <TrailerEmbed trailer={trailer} />
         </>
     );

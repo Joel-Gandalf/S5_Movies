@@ -5,6 +5,7 @@
     scroll-snap-type: x proximity;
     list-style: none;
     padding-block: var(--spacing-sm);
+    min-width: 0;
 }
 
 .item {
