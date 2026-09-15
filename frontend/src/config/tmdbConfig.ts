@@ -6,6 +6,7 @@ export const POSTER_SIZE = 'w185';
 export const PROFILE_SIZE = 'w185';
 export const SEARCH_POSTER_SIZE = 'w92';
 export const SEARCH_PROFILE_SIZE = 'w92';
+export const MOVIE_DETAIL_MAX_CAST = 6;
 // query params
 export const DEFAULT_INCLUDE_ADULT = false;
 export const DEFAULT_DISCOVER_PARAMS = {

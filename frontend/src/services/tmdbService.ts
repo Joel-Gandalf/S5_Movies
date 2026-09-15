@@ -3,7 +3,10 @@ import { SEARCH_MAX_PEOPLE_FOR_CAST_CHAIN } from "../config/searchConfig";
 import type { Movie } from "../types/Movie";
 import type { Person } from "../types/Person";
 import type { PersonMovieCredits } from "../types/PersonMovieCredits";
+import type { MovieDetail } from "../types/MovieDetail";
 import type { PaginatedResponse } from "../types/PaginatedResponse";
+
+export class MovieNotFoundError extends Error { }
 
 export const discoverMovies = async (page: number = 1): Promise<PaginatedResponse<Movie>> => {
 
@@ -103,14 +106,14 @@ export const getCastSearchResults = async (query: string): Promise<Movie[]> => {
     const topPersons = personsResponse.results.slice(0, SEARCH_MAX_PEOPLE_FOR_CAST_CHAIN);
     const creditsPromises = topPersons.map(person => getPersonMovieCredits(person.id));
     const creditsList = await Promise.all(creditsPromises);
-    
+
     const movies = creditsList.flatMap(credit => {
         const directedMovies = credit.crew.filter(crewCredit => crewCredit.job === "Director");
         return [...credit.cast, ...directedMovies];
     });
 
     const moviesById = new Map<number, Movie>();
-    
+
     movies.forEach(movie => {
         moviesById.set(movie.id, movie);
     });
@@ -118,4 +121,39 @@ export const getCastSearchResults = async (query: string): Promise<Movie[]> => {
     const moviesSelected = Array.from(moviesById.values());
 
     return moviesSelected;
+}
+
+export const getMovieDetail = async (movieId: number): Promise<MovieDetail> => {
+
+    const detailResponse = await fetch(`${TMDB_BASE_URL}/movie/${movieId}?append_to_response=credits&language=es-ES`, {
+        headers: {
+            Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
+            accept: 'application/json',
+        },
+    });
+
+    if (detailResponse.status === 404) {
+        throw new MovieNotFoundError(`Movie ${movieId} not found`);
+    }
+
+    if (!detailResponse.ok) {
+        throw new Error(`Error HTTP: ${detailResponse.status}`);
+    }
+
+    const movieDetail = await detailResponse.json();
+
+    const videosResponse = await fetch(`${TMDB_BASE_URL}/movie/${movieId}/videos`, {
+        headers: {
+            Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
+            accept: 'application/json',
+        },
+    });
+
+    if (!videosResponse.ok) {
+        throw new Error(`Error HTTP: ${videosResponse.status}`);
+    }
+
+    const videos = await videosResponse.json();
+
+    return { ...movieDetail, videos };
 }
