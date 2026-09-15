@@ -1,19 +1,17 @@
 import { NavLink } from "react-router";
-import { useAuthPlaceholder } from "../hooks/useAuthPlaceholder";
+import { useAuth } from "../hooks/useAuth";
 import styles from '../styles/AccountNav.module.css';
 
 export const AccountNav = () => {
 
-    const { isLoggedIn, userName, toggleLogin } = useAuthPlaceholder();
+    const { user } = useAuth();
 
     return (
-        <>
-            <button onClick={toggleLogin}>Cambiar sesión (debug)</button>
-            
-            {isLoggedIn ? (
+        <>  
+            {user ? (
                 <div>
                     <NavLink to="/account" aria-label="Ir a mi cuenta" className={styles.accountLink}>
-                        {userName} Mi cuenta
+                        {user.displayName} Mi cuenta
                     </NavLink>
                 </div >
             ) : (

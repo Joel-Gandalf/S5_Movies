@@ -1,4 +1,4 @@
-import { useAuthPlaceholder } from "../hooks/useAuthPlaceholder"
+import { useAuth } from "../hooks/useAuth";
 import { Navigate } from "react-router";
 import type { ReactNode } from "react";
 
@@ -7,10 +7,14 @@ type PrivateRouteGuardProps = {
 }
 
 export const PrivateRouteGuard = ({children}: PrivateRouteGuardProps) => {
-    const {isLoggedIn} = useAuthPlaceholder();
+    const { user, status } = useAuth();
 
-    if (!isLoggedIn) {
-        return <Navigate to={"/login"} />
+    if (status === "loading") {
+        return null;
+    }
+
+    if (!user) {
+        return <Navigate to="/login" />;
     }
 
     return children;
