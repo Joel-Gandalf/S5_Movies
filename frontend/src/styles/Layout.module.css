@@ -27,6 +27,7 @@
     font-weight: var(--font-weight-bold);
     color: var(--color-primary);
     text-decoration: none;
+    margin-top: 12px;
 }
 
 .menuPanel {
@@ -129,6 +130,7 @@
 
     .accountNavWrapper {
         margin-left: auto;
+        margin-top: 12px;
     }
 
     .searchRow {

@@ -11,7 +11,7 @@ interface AccountDropdownProps {
 }
 
 export const AccountDropdown = ({ username, isOpen, onToggle, onLogout }: AccountDropdownProps) => {
-    
+
     const triggerRef = useRef<HTMLButtonElement>(null);
     const firstMenuItemRef = useRef<HTMLAnchorElement>(null);
     const wasOpenRef = useRef(false);
@@ -31,7 +31,7 @@ export const AccountDropdown = ({ username, isOpen, onToggle, onLogout }: Accoun
             onToggle();
         }
     };
-    
+
     return (
         <div className={styles.container}>
             <button
@@ -42,7 +42,8 @@ export const AccountDropdown = ({ username, isOpen, onToggle, onLogout }: Accoun
                 aria-expanded={isOpen}
                 className={styles.trigger}
             >
-                {username} Mi cuenta
+                <span className={styles.username}>{username}</span>
+                <span className={styles.accountLabel}>Mi cuenta</span>
             </button>
 
             {isOpen && (
