@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { useAuth } from "../hooks/useAuth";
 import { useClickOutside } from "../hooks/useClickOutside";
 import { AccountDropdown } from "./AccountDropdown";
@@ -8,14 +8,22 @@ import styles from '../styles/AccountNav.module.css';
 
 export const AccountNav = () => {
 
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
     const [isOpen, setIsOpen] = useState(false);
     const accountDropdownRef = useRef<HTMLDivElement>(null);
+    const navigate = useNavigate();
 
     const handleToggle = () => setIsOpen((prev) => !prev);
 
-    const handleLogout = () => {
-        // lógica real de logout posterior
+    const handleLogout = async () => {
+        try {
+            await logout();
+            navigate("/");
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsOpen(false);
+        }
     };
 
     useClickOutside(accountDropdownRef, () => setIsOpen(false));
