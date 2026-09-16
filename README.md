@@ -28,13 +28,9 @@ This is an academic project developed as part of a full-stack bootcamp, followin
  
 ![Lighthouse report](docs/screenshots/screenshotLighthouse.png)
  
-| Performance | Accessibility | Best Practices | SEO |
-| --- | --- | --- | --- |
-| 81 | 95 | 100 | 92 |
- 
 ## Live Demo
  
-> _Pending — a GitHub Actions workflow will deploy this project automatically; the live link (no installation required) will be added here once set up._
+> **[joel-gandalf.github.io/S5_Movies](https://joel-gandalf.github.io/S5_Movies/)**
  
 ## Tech Stack
  
