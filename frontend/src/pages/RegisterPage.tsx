@@ -30,7 +30,7 @@ export const RegisterPage = () => {
         } catch (error) {
             setSubmitError((error as Error).message);
         }
-    };
+    }
 
     return (
         <div className={styles.page}>
@@ -91,4 +91,4 @@ export const RegisterPage = () => {
             </form>
         </div>
     );
-};
+}
