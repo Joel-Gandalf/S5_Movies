@@ -1,0 +1,1 @@
+export const FavoritesPage = () => <p>FavoritesPage — pendiente (US-15)</p>

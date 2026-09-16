@@ -1,0 +1,22 @@
+// urls para endpoints
+export const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
+export const TMDB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/';
+
+export const POSTER_SIZE = 'w185';
+export const PROFILE_SIZE = 'w185';
+export const SEARCH_POSTER_SIZE = 'w92';
+export const SEARCH_PROFILE_SIZE = 'w92';
+export const MOVIE_DETAIL_MAX_CAST = 6;
+// query params
+export const DEFAULT_INCLUDE_ADULT = false;
+export const DEFAULT_DISCOVER_PARAMS = {
+  sort_by: 'primary_release_date.desc',
+  region: 'ES',
+  include_adult: DEFAULT_INCLUDE_ADULT,
+  'vote_count.gte': 10,
+};
+// primary_release_date.lte=fecha_actual
+// Obtención de la fecha actual:
+export const getTodayFormatted = (): string => {
+  return new Date().toISOString().slice(0, 10);
+};

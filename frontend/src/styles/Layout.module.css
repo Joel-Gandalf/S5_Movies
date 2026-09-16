@@ -1,0 +1,144 @@
+.appShell {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.siteHeader {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.headerInner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    min-height: 2.75rem;
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+    padding-inline: var(--content-padding-inline);
+    padding-block: 0 0.75rem;
+}
+
+.logoSlot {
+    flex-shrink: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    text-decoration: none;
+    margin-top: 12px;
+}
+
+.menuPanel {
+    position: absolute;
+    top: var(--spacing-xs);
+    right: 0;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--spacing-xs);
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.menuPanelOpen {
+    border-color: var(--color-border);
+    background-color: var(--color-surface);
+}
+.menuToggle {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    color: var(--color-text);
+    font-size: var(--font-size-xl);
+    line-height: 1;
+    cursor: pointer;
+}
+
+.navLinks {
+    display: none;
+}
+
+.navLinksOpen {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    width: max-content;
+    max-width: 16rem;
+    margin-top: var(--spacing-sm);
+}
+
+.searchRow {
+    display: flex;
+    justify-content: center;
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+    padding-inline: var(--content-padding-inline);
+    padding-block: 0 0.75rem;
+}
+
+.mainContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+    padding-inline: var(--content-padding-inline);
+    padding-block: var(--spacing-lg);
+    width: 100%;
+}
+
+.siteFooter {
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+}
+
+.footerInner {
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+    padding-inline: var(--content-padding-inline);
+    padding-block: var(--spacing-md);
+    min-height: 3rem;
+}
+
+@media (min-width: 768px) {
+    .headerInner {
+        flex-wrap: nowrap;
+        padding-inline: var(--spacing-lg);
+    }
+
+    .menuToggle {
+        display: none;
+    }
+
+    .menuPanel,
+    .navLinks {
+        display: contents;
+    }
+
+    .primaryNav {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .accountNavWrapper {
+        margin-left: auto;
+        margin-top: 12px;
+    }
+
+    .searchRow {
+        padding-inline: var(--spacing-lg);
+    }
+
+    .mainContent,
+    .footerInner {
+        padding-inline: var(--spacing-lg);
+    }
+}

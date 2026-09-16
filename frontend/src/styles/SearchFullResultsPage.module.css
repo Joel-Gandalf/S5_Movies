@@ -1,0 +1,23 @@
+.page {
+    min-height: 8vh;
+}
+
+.title {
+    text-align: center;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin: var(--spacing-lg) auto;
+    overflow-wrap: break-word;
+}
+
+.query {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-regular);
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: var(--font-size-xl);
+    }
+}

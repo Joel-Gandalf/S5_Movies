@@ -1,0 +1,1 @@
+export const AccountPage = () => <p>AccountPage — pendiente (US-12)</p>

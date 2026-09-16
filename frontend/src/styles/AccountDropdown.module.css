@@ -1,0 +1,66 @@
+.container {
+    position: relative;
+}
+
+.trigger {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+    line-height: 1.2;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 6px;
+}
+
+.trigger:hover {
+    background-color: var(--color-border);
+}
+
+.username {
+    font-weight: var(--font-weight-bold);
+}
+
+.accountLabel {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}
+
+.menu {
+    position: absolute;
+    top: calc(100% + var(--spacing-xs));
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    min-width: 10rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    padding-block: var(--spacing-xs);
+    list-style: none;
+    z-index: 20;
+}
+
+.menuLink,
+.menuButton {
+    display: block;
+    width: 100%;
+    text-align: left;
+    color: var(--color-text);
+    text-decoration: none;
+    background: none;
+    border: none;
+    font-size: var(--font-size-base);
+    padding: var(--spacing-sm) var(--spacing-md);
+    cursor: pointer;
+}
+
+.menuLink:hover,
+.menuButton:hover {
+    background-color: var(--color-border);
+}
