@@ -26,7 +26,7 @@ This is an academic project developed as part of a full-stack bootcamp, followin
  
 ## Lighthouse
  
-![Lighthouse report](docs/screenshots/lighthouse-report.png)
+![Lighthouse report](docs/screenshots/screenshotLighthouse.png)
  
 | Performance | Accessibility | Best Practices | SEO |
 | --- | --- | --- | --- |
