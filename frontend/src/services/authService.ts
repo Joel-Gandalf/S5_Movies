@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "./firebaseConfig";
 import type { RegisterFormData } from "../types/RegisterFormData";
 import type { LoginFormData } from "../types/LoginFormData";
@@ -19,8 +19,8 @@ export const registerUser = async (data: RegisterFormData): Promise<AuthUser> =>
         uid: userCredential.user.uid,
         email: userCredential.user.email,
         displayName: data.username,
-    };
-};
+    }
+}
 
 export const loginUser = async (data: LoginFormData): Promise<AuthUser> => {
     const userCredential = await signInWithEmailAndPassword(
@@ -33,5 +33,9 @@ export const loginUser = async (data: LoginFormData): Promise<AuthUser> => {
         uid: userCredential.user.uid,
         email: userCredential.user.email,
         displayName: userCredential.user.displayName,
-    };
-};
+    }
+}
+
+export const logoutUser = async (): Promise<void> => {
+    await signOut(auth);
+}
