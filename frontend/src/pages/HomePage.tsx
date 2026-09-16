@@ -1,5 +1,5 @@
-import headingImage from '../assets/images/imagen-muestra.png';
-import searchImage from '../assets/images/searchScreenshot.png'
+import headingImage from '../assets/images/imagen-muestra.webp';
+import searchImage from '../assets/images/searchScreenshot.webp';
 import styles from '../styles/HomePage.module.css';
 
 export const HomePage = () => {
