@@ -1,4 +1,5 @@
 import headingImage from '../assets/images/imagen-muestra.png';
+import searchImage from '../assets/images/searchScreenshot.png'
 import styles from '../styles/HomePage.module.css';
 
 export const HomePage = () => {
@@ -24,7 +25,7 @@ export const HomePage = () => {
                     </p>
                 </div>
                 <figure className={styles.figure}>
-                    <img src={headingImage} alt="Vista previa de la aplicación PROVISIONAL" />
+                    <img src={searchImage} alt="Vista previa de la aplicación PROVISIONAL" />
                 </figure>
             </section>
 
