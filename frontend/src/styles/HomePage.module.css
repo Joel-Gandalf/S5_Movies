@@ -58,6 +58,7 @@
     overflow: hidden;
     box-shadow: var(--shadow);
     aspect-ratio: 4 / 3;
+    border: 1px solid #b8071077;
 }
 
 .figure img {
