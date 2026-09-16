@@ -8,4 +8,5 @@ export interface AuthContextValue {
     status: RequestStatus;
     register: (data: RegisterFormData) => Promise<void>;
     login: (data: LoginFormData) => Promise<void>;
+    logout: () => Promise<void>;
 }
