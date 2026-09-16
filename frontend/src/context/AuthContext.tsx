@@ -2,7 +2,7 @@ import { createContext, useEffect, useState, type ReactNode } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../services/firebaseConfig";
 import { mapFirebaseAuthError } from "../utils/mapFirebaseAuthError";
-import { registerUser, loginUser } from "../services/authService";
+import { registerUser, loginUser, logoutUser } from "../services/authService";
 import type { AuthUser } from "../types/AuthUser";
 import type { AuthContextValue } from "../types/AuthContextValue";
 import type { RequestStatus } from "../types/RequestStatus";
@@ -56,7 +56,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         }
     };
 
-    const value: AuthContextValue = { user, status, register, login };
+    const logout = async (): Promise<void> => {
+        try {
+            await logoutUser();
+            setUser(null);
+        } catch (error) {
+            throw new Error(mapFirebaseAuthError(error as FirebaseAuthErrorLike));
+        }
+    };
+
+    const value: AuthContextValue = { user, status, register, login, logout };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
