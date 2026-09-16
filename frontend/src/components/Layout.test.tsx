@@ -9,7 +9,7 @@ import type { AuthContextValue } from '../types/AuthContextValue';
 
 vi.mock('firebase/auth', () => ({
     getAuth: vi.fn(),
-    onAuthStateChanged: vi.fn(() => () => {}),
+    onAuthStateChanged: vi.fn(() => () => { }),
     createUserWithEmailAndPassword: vi.fn(),
     updateProfile: vi.fn(),
 }));
@@ -26,13 +26,13 @@ const renderWithRouter = (initialRoute: string) => {
             <Routes>
                 <Route element={<Layout />}>
                     <Route path="/" element={<HomeStub />} />
-                    <Route 
-                        path="/favorites" 
+                    <Route
+                        path="/favorites"
                         element={
                             <PrivateRouteGuard>
                                 <FavoritesStub />
                             </PrivateRouteGuard>
-                            } />
+                        } />
                     <Route path="/login" element={<LoginStub />} />
                 </Route>
             </Routes>
@@ -93,9 +93,9 @@ describe('Layout — navegación (US-01)', () => {
 
         await user.tab();
         expect(logoLink).toHaveFocus();
-        
+
         await user.tab();
-        expect(menuToggle).toHaveFocus();        
+        expect(menuToggle).toHaveFocus();
 
         await user.tab();
         expect(homeLink).toHaveFocus();
@@ -150,7 +150,7 @@ describe('AccountNav — sesión iniciada (US-01)', () => {
     it('should show the username and account link when there is a session', () => {
         renderWithRouter('/');
 
-        expect(screen.getByRole('link', { name: /ir a mi cuenta/i })).toHaveTextContent('Joel');
+        expect(screen.getByRole('button', { name: /joel/i })).toBeInTheDocument();
         expect(screen.queryByRole('link', { name: /ir a iniciar sesión/i })).not.toBeInTheDocument();
     });
 });

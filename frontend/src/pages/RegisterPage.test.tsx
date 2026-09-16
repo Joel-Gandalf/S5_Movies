@@ -186,6 +186,6 @@ describe('RegisterPage + AccountNav — sesión tras registro (US-09)', () => {
         await fillValidForm(user);
         await user.click(screen.getByRole('button', { name: /registrarse/i }));
 
-        expect(await screen.findByRole('link', { name: /ir a mi cuenta/i })).toHaveTextContent('joel83');
+        expect(await screen.findByRole('button', { name: /joel83/i })).toBeInTheDocument();
     });
 });
