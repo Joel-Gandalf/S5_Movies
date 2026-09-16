@@ -6,9 +6,9 @@ import { FormField } from "../components/FormField";
 import type { RegisterFormData } from "../types/RegisterFormData";
 import { USERNAME_MIN_LENGTH, USERNAME_MAX_LENGTH } from "../config/authConfig";
 import { useAuth } from "../hooks/useAuth";
+import { EMAIL_PATTERN } from "../config/authConfig";
+import { EMAIL_PATTERN_ERROR_MESSAGE } from "../config/authConfig";
 import styles from "../styles/RegisterPage.module.css";
-
-const EMAIL_PATTERN = /^\S+@\S+\.\S+$/;
 
 export const RegisterPage = () => {
     const {
@@ -30,7 +30,7 @@ export const RegisterPage = () => {
         } catch (error) {
             setSubmitError((error as Error).message);
         }
-    };
+    }
 
     return (
         <div className={styles.page}>
@@ -65,7 +65,7 @@ export const RegisterPage = () => {
                         required: "El correo electrónico es obligatorio",
                         pattern: {
                             value: EMAIL_PATTERN,
-                            message: "El formato del correo no es válido",
+                            message: EMAIL_PATTERN_ERROR_MESSAGE,
                         },
                     })}
                 />
@@ -91,4 +91,4 @@ export const RegisterPage = () => {
             </form>
         </div>
     );
-};
+}

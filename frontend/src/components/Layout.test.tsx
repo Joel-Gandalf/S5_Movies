@@ -46,6 +46,7 @@ const mockAuth = (overrides: Partial<AuthContextValue> = {}) => {
         user: null,
         status: 'success',
         register: vi.fn(),
+        login: vi.fn(),
         ...overrides,
     });
 };

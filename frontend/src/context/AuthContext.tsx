@@ -2,11 +2,12 @@ import { createContext, useEffect, useState, type ReactNode } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../services/firebaseConfig";
 import { mapFirebaseAuthError } from "../utils/mapFirebaseAuthError";
-import { registerUser } from "../services/authService";
+import { registerUser, loginUser } from "../services/authService";
 import type { AuthUser } from "../types/AuthUser";
 import type { AuthContextValue } from "../types/AuthContextValue";
 import type { RequestStatus } from "../types/RequestStatus";
 import type { RegisterFormData } from "../types/RegisterFormData";
+import type { LoginFormData } from "../types/LoginFormData";
 import type { FirebaseAuthErrorLike } from "../utils/mapFirebaseAuthError";
 
 
@@ -14,7 +15,7 @@ export const AuthContext = createContext<AuthContextValue | undefined>(undefined
 
 type AuthProviderProps = {
     children: ReactNode;
-};
+}
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
     const [user, setUser] = useState<AuthUser | null>(null);
@@ -46,7 +47,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         }
     };
 
-    const value: AuthContextValue = { user, status, register };
+    const login = async (data: LoginFormData): Promise<void> => {
+        try {
+            const loggedInUser = await loginUser(data);
+            setUser(loggedInUser);
+        } catch (error) {
+            throw new Error(mapFirebaseAuthError(error as FirebaseAuthErrorLike));
+        }
+    };
+
+    const value: AuthContextValue = { user, status, register, login };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-};
+}
